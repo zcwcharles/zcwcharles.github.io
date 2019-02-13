@@ -1,1 +1,23 @@
-Hello World
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>self-profile-page</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript">
+    	function onLoad() {
+    		axios.get('https://s.yimg.com/ap/build/images/sohp/2018-top-25/underwater_lighting_small.jpg')
+        .then((response) => {
+          const url = window.URL.createObjectURL(response.data);
+          document.getElementById('image').setAttribute(src, url);
+        });
+    	}
+    </script>
+  </head>
+  <body onload="onLoad()">
+    <div>
+    	<img src="" id="image">
+    </div>
+  </body>
+</html>
