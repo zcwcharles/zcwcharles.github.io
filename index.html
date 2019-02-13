@@ -7,10 +7,14 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript">
     	function onLoad() {
-    		axios.get('https://s.yimg.com/ap/build/images/sohp/2018-top-25/underwater_lighting_small.jpg')
+    		axios.get({
+    			method: 'get',
+    			url: 'https://s.yimg.com/ap/build/images/sohp/2018-top-25/underwater_lighting_small.jpg',
+    			responseType: 'blob',
+    		})
         .then((response) => {
-          const url = window.URL.createObjectURL(response.data);
-          document.getElementById('image').setAttribute(src, url);
+          const url = URL.createObjectURL(new Blob(response.data, {type: "image/jpeg"}));
+          document.getElementById('image').setAttribute('src', url);
         });
     	}
     </script>
