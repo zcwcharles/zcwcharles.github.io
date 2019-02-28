@@ -1,6 +1,8 @@
 <template>
   <div class="nav">
     <nav-btn path="/" name="home"/>
+    <nav-btn path="/project" name="project"/>
+    <nav-btn path="/hobby" name="hobby"/>
     <nav-btn path="/about" name="about"/>
   </div>
 </template>
