@@ -14,6 +14,7 @@
   margin-right: auto;
   margin-left: auto;
   background: url('../assets/home-bg-2.jpg');
+  background-size: cover;
   height: 100vh;
 
   &__text {
