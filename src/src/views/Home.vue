@@ -4,6 +4,7 @@
       <div class="profile-page__name">Zichen Wang</div>
       <div class="profile-page__title">Web Developer</div>
     </div>
+    <background/>
   </div>
 </template>
 
@@ -13,7 +14,6 @@
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-  background: url('../assets/home-bg-2.jpg');
   background-size: cover;
   height: 100vh;
 
@@ -41,8 +41,15 @@
 
 
 <script lang="ts">
+import { VNode, CreateElement } from 'vue';
 import { Component, Vue } from 'vue-property-decorator';
+import Background from '../components/Background.vue';
 
-@Component
-export default class Home extends Vue {}
+@Component({
+  components: {
+    Background,
+  },
+})
+export default class Home extends Vue {
+}
 </script>
