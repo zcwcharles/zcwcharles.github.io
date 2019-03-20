@@ -10,12 +10,9 @@
 
 <style lang="scss">
 .profile-page {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  background-size: cover;
-  height: 100vh;
+  position: absolute;
+  height: 100%;
+  width: 100%;
 
   &__text {
     text-align: start;

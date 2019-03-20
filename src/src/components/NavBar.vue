@@ -1,9 +1,9 @@
 <template>
   <div class="nav">
-    <nav-btn path="/" name="home"/>
-    <nav-btn path="/project" name="project"/>
-    <nav-btn path="/hobby" name="hobby"/>
-    <nav-btn path="/about" name="about"/>
+    <nav-btn path="/" name="Home"/>
+    <nav-btn path="/project" name="Project"/>
+    <nav-btn path="/hobby" name="Hobby"/>
+    <nav-btn path="/about" name="About"/>
   </div>
 </template>
 

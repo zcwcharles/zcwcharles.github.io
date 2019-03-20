@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import Project from './views/Project.vue';
+import About from './views/About.vue';
+import Hobby from './views/Hobby.vue';
 
 Vue.use(Router);
 
@@ -15,17 +18,17 @@ export default new Router({
     {
       path: '/about',
       name: 'about',
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue'),
+      component: About,
     },
     {
       path: '/project',
       name: 'project',
-      component: () => import(/* webpackChunkName: "project" */ './views/Project.vue'),
+      component: Project,
     },
     {
       path: '/hobby',
       name: 'hobby',
-      component: () => import(/* webpackChunkName: "hobby" */ './views/Hobby.vue'),
+      component: Hobby,
     },
   ],
 });

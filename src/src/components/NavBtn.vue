@@ -6,7 +6,7 @@
 .nav-btn {
   width: 50%;
   padding-top:20px;
-  color: #0b8457;
+  color: #333333;
   background: none;
   transition: ease 0.5s;
   cursor: pointer;
@@ -15,9 +15,9 @@
   }
   &--active {
     color: #9692af;
-    background: none;
+    background: black;
     &:hover {
-      background: none;
+      background: black;
     }
   }
 }
