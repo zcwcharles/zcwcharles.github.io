@@ -2,7 +2,7 @@
   <div class="nav">
     <nav-btn path="/" name="Home"/>
     <nav-btn path="/project" name="Project"/>
-    <nav-btn path="/hobby" name="Hobby"/>
+    <nav-btn path="/blogs" name="Blogs"/>
     <nav-btn path="/about" name="About"/>
   </div>
 </template>
@@ -16,6 +16,10 @@
   z-index: 9999;
   transition: ease 0.5s;
   display: flex;
+  background: white;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  border-bottom-color: rgba(0,0,0,0.1);
   &:hover {
     background: rgba(51,49,59, 0.8);
     transition: ease 0.5s;

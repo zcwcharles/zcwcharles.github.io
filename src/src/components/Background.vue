@@ -10,7 +10,9 @@
 .block {
   width: 2rem;
   height: 2rem;
-  background: black;
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
   position: absolute;
 }
 .ring {
@@ -36,7 +38,7 @@
 <script lang="tsx">
 import { VNode, CreateElement } from 'vue';
 import { Component, Vue, Prop } from 'vue-property-decorator';
-const anime = require('animejs/lib/anime.js');
+import anime from 'animejs';
 
 interface Coordinate {
   x: number;

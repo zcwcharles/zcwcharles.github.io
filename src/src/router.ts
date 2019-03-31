@@ -1,9 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from './views/Home.vue';
-import Project from './views/Project.vue';
-import About from './views/About.vue';
-import Hobby from './views/Hobby.vue';
+
+const Home = () => import('@/views/Home.vue');
+const Project = () => import('@/views/Project.vue');
+const Blogs = () => import('@/views/Blogs.vue');
+const About = () => import('@/views/About.vue');
 
 Vue.use(Router);
 
@@ -26,9 +27,9 @@ export default new Router({
       component: Project,
     },
     {
-      path: '/hobby',
-      name: 'hobby',
-      component: Hobby,
+      path: '/blogs',
+      name: 'blogs',
+      component: Blogs,
     },
   ],
 });

@@ -8,8 +8,8 @@
 .about {
   padding-top: 60px;
   position: absolute;
-  height: 94.5%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
 }
 </style>
 
