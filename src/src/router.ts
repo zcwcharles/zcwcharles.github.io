@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-const Home = () => import('@/views/Home.vue');
-const Project = () => import('@/views/Project.vue');
-const Blogs = () => import('@/views/Blogs.vue');
-const About = () => import('@/views/About.vue');
+const Home = () => import(/* webpackChunkName: "home" */ '@/views/Home.vue');
+const Project = () => import(/* webpackChunkName: "project" */ '@/views/Project.vue');
+const Blogs = () => import(/* webpackChunkName: "blogsView" */ '@/views/Blogs.vue');
+const About = () => import(/* webpackChunkName: "about" */ '@/views/About.vue');
 
 Vue.use(Router);
 

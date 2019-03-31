@@ -41,7 +41,7 @@ import Vue from 'vue';
 import 'highlight.js/styles/github.css';
 import '@/css/markdown7.css';
 import { Component } from 'vue-property-decorator';
-const BlogJsNote01 = () => import('../blogs/blog-js-note-01.md');
+const BlogJsNote01 = () => import(/* webpackChunkName: "blogs" */ '../blogs/blog-js-note-01.md');
 
 @Component({
   components: {

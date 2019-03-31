@@ -9,6 +9,7 @@
   color: #333333;
   background: none;
   transition: ease 0.5s;
+  font-size: 14px;
   cursor: pointer;
   &:hover {
      background: #9692af;
