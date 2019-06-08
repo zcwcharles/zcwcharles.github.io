@@ -16,22 +16,22 @@
   position: absolute;
 }
 .ring {
-  width: 20rem;
-  height: 20rem;
+  width: 40vh;
+  height: 40vh;
   border-width: 2px;
   border-color: rgba(1, 1, 1, 0.2);
   border-style: solid;
   position: absolute;
-  top: 483px;
-  left: 975px;
+  top: 50vh;
+  left: 60vw;
 }
 .solid-block {
   background: #33313b;
-  width: 30rem;
-  height: 30rem;
+  width: 50vh;
+  height: 50vh;
   position: absolute;
-  top: 215px;
-  left: 1170px;
+  top: 20vh;
+  right: 5vw;
 }
 </style>
 

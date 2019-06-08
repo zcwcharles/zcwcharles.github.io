@@ -8,8 +8,7 @@
 .project {
   padding-top: 60px;
   position: absolute;
-  height: 94.5%;
-  width: 100%;
+  width: 100vw;
 }
 </style>
 

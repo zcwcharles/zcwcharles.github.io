@@ -60,7 +60,7 @@ export default class BlogListView extends Vue {
     {
       id: 0,
       title: 'JavaScript Learning Note - 01',
-      date: '2019-03-31',
+      date: '2019-06-09',
     },
   ];
 

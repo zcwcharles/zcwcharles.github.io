@@ -2,7 +2,6 @@
 module.exports = {
   assetsDir: 'static',
   chainWebpack: (config) => {
-    config.plugins.delete('prefetch')
     config.module.rule('md')
       .test(/\.md/)
       .use('vue-loader')
