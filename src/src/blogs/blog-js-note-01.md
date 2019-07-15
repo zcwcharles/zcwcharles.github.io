@@ -193,12 +193,12 @@ Like Mentioned before, functions like `replace` and `toUpperCase` won't make any
 ### Regular Expression
 It is not a basic data structure of JS, it is a object instead. It is a powerful tool to process text in JS. More detailed information would be mentioned in Chapater 10.
 
-## Boolean
+## <a name="Boolean"><a/>Boolean
 > Like in other programming languages, JavaScript also has `true` and `false` as the value for boolean. 
 
-One notable thing about Boolean in JS is that, all type of values could be transformed into Boolean, and this is the most important reason why most of time we would try to use `===` instead of `==` while we are comparing two values or objects.  
+One notable thing about Boolean in JS is that, all type of values could be transformed into Boolean. And this would happen when we evaluating values with `if()`.  
 
-Values that would be transfered into `false`:  
+Values that would be converted into `false`:  
 - `undefined`
 - `null`
 - `0`
@@ -206,7 +206,7 @@ Values that would be transfered into `false`:
 - `NaN`
 - `""` or string with only spaces.  
 
-All other values would be transfered into `true`. The six values above are also called as **falsy value**, and all other values could be called as **truthy value**.  
+All other values would be converted into `true`. The six values above are also called as **falsy value**, and all other values could be called as **truthy value**.  
 
 ## `null` and `undefined`
 > `null` and `undefined` are both values that could reperesent **empty** concept in JS, but they are not the same.  
@@ -232,4 +232,233 @@ The **Global Object** would include the following properties:
 We could use these properties straightly, with/without keyword `this` outside any functions or objects. And in explores, this **Global Object** would be a **Window** object, which would have some more properties than it. And in explores, an refer called `window` will be a default reference of this global **Window** object.  
 
 When **Global Object** is created, all global variables and functions would be defined, and if we claimed a global variable or function in our code, it would also be included in **Global Object**.  
+
+## Wrapper Object
+> As we know that string, boolean, number are types of JS, unlike objects, they don't have their own property or functions but how could we get properties like `.length` from a string ?
+
+What happens when trying to get `.length` from a string is that a temperory object was created according to the string value. After we get the `.length` property, it was destoryed. This might not be what actually happens, but it works in a similar way.  
+
+```javascript
+var s = 'abc';
+s.len = 12; // This step won't cause error is because of the existance of temperory object.
+var t = s.len; 
+/* t would be undefined, at the time we declare t
+temperory object of s has already been destoryed.*/
+```
+
+Besides the basic types like string, boolean, number, we also have Wrapper Objects correspondingly. And these objects would be treated as the same when using `==` to compare with basic types holding the same values. But if we use `===`, the Wrapper Objects would be treated as different from basic types holding the same values, this is because they are not the same in type. And we could also have customized functions or properties when using a Wrapper Object.  
+
+```javascript
+var s = 'abc';
+var S = new String(s);
+s == S // => true
+s === S // => false
+typeof(S) // => object
+typeof(s) // => string
+S.len = 4
+var t = S.len // => t would be 4, since S is an object, we could add any properties or functions to it
+```
+
+## Unchangeable primitive values and changeable object
+> In JavaScript, we have 5 primitve value types: `undefined`, `null`, `boolean`, `number` and `string` which are not allow to be changed. We also have objects which are changeable.  
+
+### Primitive values
+Primitve values are not allowed to be changed or mutated, functions like `toUpperCase`, `substring` or `toString` only return values, but won't change the source. And also when we comparing primitive values, we juse simply compare their value and see if they are the same. Which means using `===` is enough for comparing these kind of values.  
+
+### Objects
+Unlike primitive values, objects are changeable, we could easily add or modify props to them. And their props could be primitive values, functions or another object. And it is reasonable that to tell if two objects are the same is somewhat difficult. Also, using `===` won't help, since it only test if two objects are the same instance.  
+
+```javascript
+var a = [] // => notice that array is also object.
+var b = []
+var c = a
+
+a === b // => false, two arrays are never equal if they are not the same instance.
+a === c // => true since they refer to the same instance.
+a.push(1)
+c.length // => 1
+```
+
+## Type transform
+> In JavaScript, the type of a value could be easily changed. We could see this by recalling truthy value and falsy values. Let's first look at some examples.  
+
+```javascript
+1 + ' String' // => '1 String'
+'6' * '8' // => 48
+var a = 1 - 'x' // => NaN
+a + ' Object' // => 'NaN Object'
+```  
+
+After we checked out these examples, let's have a look of the complete table how values would be converted in JS.  
+
+|Original Value|string         |number   |boolean |object               |
+|--------------|---------------|---------|--------|---------------------|
+|undefined     |'undefined'    |**NaN**  |false   |throws TypeError     |
+|null          |'null'         |**0**    |false   |throws TypeError     |
+|true          |'true'         |1        |        |new Boolean(true)    |
+|false         |'false'        |0        |        |new Boolean(false)   |
+|''            |               |**0**    |false   |new String('')       |
+|'1.2'         |               |1.2      |true    |new String('1.2')    |
+|'str'         |               |**NaN**  |true    |new String('str')    |
+|0             |'0'            |         |false   |new Number(0)        |
+|-0            |**'0'**        |         |false   |new Number(-0)       |
+|NaN           |'NaN'          |         |false   |new Number(NaN)      |
+|Infinity      |'Infinity'     |         |true    |new Number(Infinity) |
+|-Infinity     |'-Infinity'    |         |**true**|new Number(-Infinity)|
+|2             |'2'            |         |true    |new Number(2)        |
+|{}            |Reference      |Reference|true    |                     |
+|[]            |''             |0        |**true**|                     |
+|[3]           |'3'            |3        |true    |                     |
+|[1,2]         |'1,2'          |**NaN**  |true    |                     |
+|['a','b']     |'ab'           |**NaN**  |true    |                     |
+|function(){}  |Reference      |**NaN**  |true    |                     |
+
+## Equality
+Like we mentioned [before](#Boolean), when we using `if()` we are just evaluating values after they are converted into truthy and falsy values. Two values might have the same result when we evaluating them with `if()` but this doesn't mean they are equal. Here is an example:  
+
+```javascript
+if (undefined) { // => false
+    ...
+}
+if (false) { // => false
+    ...
+}
+undefined == false // => false
+```
+
+This is because `==` would never try to convert values in to Boolean to compare.  
+We would talk about this later.  
+
+## Type Conversion
+
+### Conversion using functions
+In JS, one straight way to convert values is using convert functions, for example:  
+
+```javascript
+Number('3') // => 3
+String(undefined) // => 'undefined'
+Boolean([]) // => true
+Object(3) // new Number(3)
+```
+
+The functions we mentioned above are all constructor functions when we use them with keyword `new`, which would create new objects but without `new`, they are just convert functions.  
+
+Excepting for `null` and `undefined`, we could use `toString()` of other type of values to get string value, it is the same as `String()`. And when we use `Object()` on `null` and `undefined`, we would get a `{}` object.  
+
+### Conversion without functions
+Besides convert funtions, there are some quicker ways to convert values.  
+
+```javascript
+x + '' // equal to String(x)
++x // or x-0, equal to Number(x)
+!!x // equal to Boolean(x)
+```
+
+### Conversions between numbers and strings
+Let's first take a look of how numbers could be convert into different positional notations. Basically, we count on `toString()` function, and the first parameter of this function is the radix which defines the notation we want.  
+
+```javascript
+var x = 11;
+x.toString(2) // => binary notation, 1011
+x.toString(8) // => octal notation and the first 0 would be omitted, 13
+x.toString(16) // => heximal notation, the '0x' would be omitted, b
+```
+
+Another common need is we need to convert float into different precisions, and we have three functions for this need. `toFixed()`, `toExponential()` and `toPrecision()`. Parameter of `toFixed()` and `toExponential()` reperesents how many digits we want after the decimal point, but for `toPrecision()` it means how many digits we want in total.
+
+```javascript
+var n = 123456.789
+n.toFixed(0) // => 123457
+n.toFixed(2) // => 123456.79
+n.toFixed(5) // => 123456.78900
+n.toExponential(1) // => 1.2e+5
+n.toExponential(3) // => 1.235e+5
+n.toPrecision(4) // => 1.235e+5
+n.toPrecision(7) // =>123456.8
+n.toPrecision(10) // => 123456.7890
+```
+
+`Number()` is could be only used on pure number string, for example `'1.1'`, `'12'`. However `parseInt()`, `parseFloat()` would be more flexiable, they could be used on more complicated strings. And any notations will be accepted by the three functions above. One more thing for `parseInt()`, we could have a second to determine which notation we want the number to be converted into.  
+
+```javascript
+Number('12') // => 12
+Number('0x15') // => 21
+Number('1 dog') // => NaN
+parseInt('1 dog') // => 1
+parseFloat('1.3 meter 1') // => 1.3
+parseInt('012') // => 10
+parseInt('077', 8) // => 63
+parseInt('077', 10) // => 77
+```
+
+### <a name="Obj2Pri"><a/>Convert native objects into primitive values
+In JS,there two native functions to convert native objects into `string` or `number`, they are `toString()` and `valueOf()`. For different native objects, we have different version of `toString()`, but the default `toString()` for customized object won't return a fancy result like the native ones.  
+
+```javascript
+({a: 1, b: 2}).toString() // => "[object Object]"
+[1,2,3].toString() // => "1,2,3"
+(function(x) {console.warn(x)}).toString() // => "function(x) {console.warn(x)}"
+/\d+/g.toString() // => "/\d+/g"
+(new Date()).toString() // => "Mon Jun 24 2019 20:44:37 GMT+0800 (中国标准时间)"
+```
+
+`valueOf()` is also a way to convert objects into primitive values, but it only cover a really limited range of objects. For most of types of objects, `valueOf()` would only return themselves. 
+
+```javascript
+({a: 1, b: 2}).valueOf() // => {a: 1, b: 2}
+[1,2,3].valueOf() // => [1,2,3]
+(function(x) {console.warn(x)}).valueOf() // => ƒ (x) {console.warn(x)}
+/\d+/g.valueOf() // => /\d+/g
+(new Date()).valueOf() // => 1561380583463
+```
+
+Under some situations, JS would have to convert objects into string, and this conversion would be like the following step:  
+
+- If this object has a `toString()` function, it would return the result of `toString()`.
+- If this object does not have `toString()`, JS would try to call `valueOf()`, if `valueOf()` existed, then JS would convert the result of `valueOf()` into string and return it.
+- If this object neither has `toString()` nor has `valueOf()`, or these two functions could not provide a primitve value as a result, JS will throw a type error.  
+
+And the step which JS convert objects into number is somewhat the same as above:  
+
+- If this object has a `valueOf()` function, JS would convert the reuslt of `valueOf()` into number and return it.
+- If this object has no `valueOf()` function, JS would try to call `toString()` and convert the result into number and return it.
+- When the two steps could not get a desired result, JS would throw a type error.  
+
+Base on the rules above, we could sketch a rough picture of how different types would be converted to primitive values in JS. Next, let's take a look of some examples:  
+
+`Number([1]); // => 1`
+```javascript
+var ary = [1];
+ary.valueOf() // => [1], not a primitive type, so try to call toString()
+var str = ary.toString() // => "1"
+Number(str) // => 1
+```
+
+`Number([]); // => 0`
+```javascript
+var ary = [];
+ary.valueOf() // => [], not a primitive type, so try to call toString()
+var str = ary.toString() // => ""
+Number(str) // => 0
+```
+
+`[1] + 1 // => "11"` or `1 + [1] // => "11"`
+```javascript
+var ary = [1];
+ary.valueOf() // => [1], not a primitive type, so try to call toString()
+var str = ary.toString() // => "1"
+'1' + 1 // => "11", when we have string in a plus operation, then it would be a concat of string.
+```
+
+`1 == '1' // => true`
+```javascript
+var num = 1;
+var str = '1';
+num === Number(str); // true 
+```
+A full comparsion process of `==` could be found [here](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness).  
+
+Relation operators like `==`, `>` would do the comparing process like above except for `Date` types. Most types of values would first try to convert into Number or say call `valueOf()` first, but for `Date` objects, it would call `toString()` first and won't do any conversions later.  
+
+Complex comparing process above would only happen on `+` and relation operators, other operators like `-` would simply try to convert all types including `Date` Objects into `Number`.  
 
