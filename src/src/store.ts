@@ -9,7 +9,7 @@ export interface RoutePayload extends Partial<Payload> {
 
 export default new Vuex.Store({
   state: {
-    cur_route: window.location.pathname,
+    cur_route: `/${window.location.hash.split('/')[1]}`,
   },
   mutations: {
     updateRoute(state, payload: RoutePayload) {
