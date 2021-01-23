@@ -56,6 +56,7 @@
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
 import NavBtn from './NavBtn.vue';
+import { mobileCheck } from '../utils/platformCheck';
 
 @Component({
   components: {
@@ -63,7 +64,7 @@ import NavBtn from './NavBtn.vue';
   },
 })
 export default class NavBar extends Vue {
-  expanded: boolean = false;
+  expanded: boolean = !mobileCheck();
 
   onCollapse() {
     this.expanded = !this.expanded;
