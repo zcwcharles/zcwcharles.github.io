@@ -104,7 +104,7 @@
   .result {
     color: #0f1123;
     line-height: 40px;
-    font-size: 20px;
+    font-size: 16px;
     width: 35%;
   }
 
@@ -151,8 +151,8 @@
     flex-direction: column;
 
     input {
-      line-height: 30px;
-      font-size: 20px;
+      line-height: 28px;
+      font-size: 16px;
       width: 35%;
     }
 
