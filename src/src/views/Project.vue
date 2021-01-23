@@ -21,19 +21,19 @@
     >
       <div class="form-item currency">
         <div class="label">{{t('FirstYearCashflow')}}</div>
-        <input type="number" v-model="firstYearCashFlow" />
+        <input type="number" v-model="firstYearCashFlow" pattern="\d*" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('CashflowGrowthRate')}}</div>
-        <input type="number" v-model="cashFlowGrothRate" />
+        <input type="number" v-model="cashFlowGrothRate" pattern="\d*" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('DiscountRate')}}</div>
-        <input type="number" v-model="discountRate" />
+        <input type="number" v-model="discountRate" pattern="\d*" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('GrowthRate')}}</div>
-        <input type="number" v-model="growthRate" />
+        <input type="number" v-model="growthRate" pattern="\d*" />
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
       <div class="form-item currency"> 
@@ -44,31 +44,31 @@
     <div v-else :class="`dcf-container${isFiveYearPeriod ? ' dcf-container__five-year-view' : ''}`">
       <div class="form-item currency">
         <div class="label">{{t('FirstYearCashflow')}}</div>
-        <input type="number" v-model="firstYearCashFlow" />
+        <input type="number" v-model="firstYearCashFlow" pattern="\d*" />
       </div>
       <div class="form-item currency">
         <div class="label">{{t('SecondYearCashflow')}}</div>
-        <input type="number" v-model="secondYearCashFlow" />
+        <input type="number" v-model="secondYearCashFlow" pattern="\d*" />
       </div>
       <div class="form-item currency">
         <div class="label">{{t('ThirdYearCashflow')}}</div>
-        <input type="number" v-model="thirdYearCashFlow" />
+        <input type="number" v-model="thirdYearCashFlow" pattern="\d*" />
       </div>
       <div v-if="isFiveYearPeriod" class="form-item currency">
         <div class="label">{{t('ForthYearCashflow')}}</div>
-        <input type="number" v-model="forthYearCashFlow" />
+        <input type="number" v-model="forthYearCashFlow" pattern="\d*" />
       </div>
       <div v-if="isFiveYearPeriod" class="form-item currency">
         <div class="label">{{t('FifthYearCashflow')}}</div>
-        <input type="number" v-model="fifthYearCashFlow" />
+        <input type="number" v-model="fifthYearCashFlow" pattern="\d*" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('DiscountRate')}}</div>
-        <input type="number" v-model="discountRate" />
+        <input type="number" v-model="discountRate" pattern="\d*" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('GrowthRate')}}</div>
-        <input type="number" v-model="growthRate" />
+        <input type="number" v-model="growthRate" pattern="\d*" />
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
       <div class="form-item currency"> 
@@ -243,7 +243,7 @@ export default class Project extends Vue {
   thirdYearCashFlow: (number | string) = '';
   forthYearCashFlow: (number | string) = '';
   fifthYearCashFlow: (number | string) = '';
-  cashFlowGrothRate: number = 0;
+  cashFlowGrothRate: (number | string) = '';
   discountRate: number = 8;
   growthRate: number = 5;
   isFiveYearPeriod: boolean = true;
@@ -281,7 +281,7 @@ export default class Project extends Vue {
     try {
       let cfs: Array<(number | string)> = [];
       if (this.useAutoCashFlowCalulation) {
-        const compoundCashflowRate = this.cashFlowGrothRate / 100 + 1;
+        const compoundCashflowRate = Number(this.cashFlowGrothRate) / 100 + 1;
         const yearCount = this.isFiveYearPeriod ? 5 : 3;
         for (let i = 0; i < yearCount; i++) {
           cfs.push(Number(this.firstYearCashFlow ) * Math.pow(compoundCashflowRate, i));
