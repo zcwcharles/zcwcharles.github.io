@@ -27,7 +27,7 @@ body {
 
 <script lang="ts">
 import Vue from 'vue';
-import NavBar from '@/components/NavBar.vue';
+import NavBar from './components/NavBar.vue';
 import { Component } from 'vue-property-decorator';
 
 @Component({
@@ -35,9 +35,8 @@ import { Component } from 'vue-property-decorator';
     NavBar,
   },
 })
-export default class App extends Vue {
-  private onNavClick(path: string) {
-    this.$router.push(path);
-  }
+class App extends Vue {
 }
+
+export default App;
 </script>

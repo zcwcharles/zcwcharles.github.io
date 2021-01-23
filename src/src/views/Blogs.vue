@@ -35,8 +35,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Component } from 'vue-property-decorator';
-import BlogView from '@/components/BlogView.vue';
-import BlogListView from '@/components/BlogListView.vue';
+import BlogView from '../components/BlogView.vue';
+import BlogListView from '../components/BlogListView.vue';
 
 @Component({
   components: {

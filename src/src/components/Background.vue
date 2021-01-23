@@ -1,7 +1,7 @@
 <style lang="scss">
 .anime-container {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   position: absolute;
   top: 0;
   left: 0;
@@ -32,6 +32,12 @@
   position: absolute;
   top: 20vh;
   right: 5vw;
+}
+
+@media screen and (max-width: 375px) {
+  .anime-container {
+    display: none;
+  }
 }
 </style>
 

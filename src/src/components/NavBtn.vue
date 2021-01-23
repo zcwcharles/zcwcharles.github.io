@@ -5,7 +5,7 @@
 <style lang="scss">
 .nav-btn {
   width: 50%;
-  padding-top:20px;
+  padding: 20px 0;
   color: #333333;
   background: none;
   transition: ease 0.5s;
@@ -22,13 +22,20 @@
     }
   }
 }
+
+@media screen and (max-width: 375px) {
+  .nav-btn {
+    width: 100%;
+    padding: 10px 0;
+  }
+}
 </style>
 
 <script lang="ts">
 import Vue from 'vue';
 import { Component, Prop } from 'vue-property-decorator';
 import { State } from 'vuex-class';
-import { RoutePayload } from '@/store.ts';
+import { RoutePayload } from '../store';
 
 @Component
 export default class NavBtn extends Vue {

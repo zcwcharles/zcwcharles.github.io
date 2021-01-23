@@ -10,14 +10,23 @@
 
 <style lang="scss">
 .profile-page {
-  position: absolute;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
+  position: relative;
+
+  @media screen and (max-width: 375px) {
+    padding-top: 120px;
+  }
 
   &__text {
     text-align: start;
     padding-top: 20%;
     padding-left: 10%;
+
+    @media screen and (max-width: 375px) {
+      text-align: center;
+      padding: 0;
+    }
   }
 
   &__name {
@@ -32,6 +41,10 @@
     font-size: 80px;
     font-weight: 500;
     padding-top: 10px;
+
+    @media screen and (max-width: 375px) {
+      font-size: 40px;
+    }
   }
 }
 </style>
