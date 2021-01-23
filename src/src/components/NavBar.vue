@@ -1,7 +1,7 @@
 <template>
   <div v-if="expanded" class="nav">
     <nav-btn path="/" name="Home"/>
-    <nav-btn path="/project" name="Project"/>
+    <nav-btn path="/project" name="DCF Calculator"/>
     <nav-btn path="/blogs" name="Blogs"/>
     <nav-btn path="/about" name="About"/>
     <div class="collapse" @click="onCollapse">x</div>
