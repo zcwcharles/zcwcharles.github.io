@@ -1,13 +1,13 @@
 <template>
   <div class="project">
     <h3>{{t('DCFTitle')}}</h3>
-    <div class="switch__title">{{t('Period')}}</div>
     <div class="switch">
+      <div class="switch__title">{{t('Period')}}</div>
       <div :class="isFiveYearPeriod ? 'item' : 'item selected'" @click="switchToThreeYearView">{{t('Period3')}}</div>
       <div :class="isFiveYearPeriod ? 'item selected' : 'item'" @click="switchToFiveYearView">{{t('Period5')}}</div>
     </div>
-    <div class="switch__title">{{t('CashFlowCalculation')}}</div>
     <div class="switch">
+      <div class="switch__title">{{t('CashFlowCalculation')}}</div>
       <div :class="useAutoCashFlowCalulation ? 'item' : 'item selected'" @click="switchToManualInput">{{t('Manual')}}</div>
       <div :class="useAutoCashFlowCalulation ? 'item selected' : 'item'" @click="switchToAutoCalculation">{{t('Auto')}}</div>
     </div>

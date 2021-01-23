@@ -63,7 +63,7 @@ import NavBtn from './NavBtn.vue';
   },
 })
 export default class NavBar extends Vue {
-  expanded: boolean = true;
+  expanded: boolean = false;
 
   onCollapse() {
     this.expanded = !this.expanded;
