@@ -16,58 +16,58 @@
       class="dcf-container"
     >
       <div class="form-item">
-        <div>{{t('FirstYearCashflow')}}</div>
+        <div class="label">{{t('FirstYearCashflow')}}</div>
         <input type="number" v-model="firstYearCashFlow" />
       </div>
       <div class="form-item percentage-input">
-        <div>{{t('CashflowGrowthRate')}}</div>
+        <div class="label">{{t('CashflowGrowthRate')}}</div>
         <input type="number" v-model="cashFlowGrothRate" />
       </div>
       <div class="form-item percentage-input">
-        <div>{{t('DiscountRate')}}</div>
+        <div class="label">{{t('DiscountRate')}}</div>
         <input type="number" v-model="discountRate" />
       </div>
       <div class="form-item percentage-input">
-        <div>{{t('GrowthRate')}}</div>
+        <div class="label">{{t('GrowthRate')}}</div>
         <input type="number" v-model="growthRate" />
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
-      <div class="form-item"> 
+      <div> 
         <div>{{t('ReasonablePrice')}}</div>
         <div class="result">{{resonablePrice}}</div>
       </div>
     </div>
     <div v-else :class="`dcf-container${isFiveYearPeriod ? ' dcf-container__five-year-view' : ''}`">
       <div class="form-item">
-        <div>{{t('FirstYearCashflow')}}</div>
+        <div class="label">{{t('FirstYearCashflow')}}</div>
         <input type="number" v-model="firstYearCashFlow" />
       </div>
       <div class="form-item">
-        <div>{{t('SecondYearCashflow')}}</div>
+        <div class="label">{{t('SecondYearCashflow')}}</div>
         <input type="number" v-model="secondYearCashFlow" />
       </div>
       <div class="form-item">
-        <div>{{t('ThirdYearCashflow')}}</div>
+        <div class="label">{{t('ThirdYearCashflow')}}</div>
         <input type="number" v-model="thirdYearCashFlow" />
       </div>
       <div v-if="isFiveYearPeriod" class="form-item">
-        <div>{{t('ForthYearCashflow')}}</div>
+        <div class="label">{{t('ForthYearCashflow')}}</div>
         <input type="number" v-model="forthYearCashFlow" />
       </div>
       <div v-if="isFiveYearPeriod" class="form-item">
-        <div>{{t('FifthYearCashflow')}}</div>
+        <div class="label">{{t('FifthYearCashflow')}}</div>
         <input type="number" v-model="fifthYearCashFlow" />
       </div>
       <div class="form-item percentage-input">
-        <div>{{t('DiscountRate')}}</div>
+        <div class="label">{{t('DiscountRate')}}</div>
         <input type="number" v-model="discountRate" />
       </div>
       <div class="form-item percentage-input">
-        <div>{{t('GrowthRate')}}</div>
+        <div class="label">{{t('GrowthRate')}}</div>
         <input type="number" v-model="growthRate" />
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
-      <div class="form-item"> 
+      <div> 
         <div>{{t('ReasonablePrice')}}</div>
         <div class="result">{{resonablePrice}}</div>
       </div>
@@ -90,6 +90,11 @@
     color: #0f1123;
     line-height: 40px;
     font-size: 20px;
+  }
+
+  .label {
+    line-height: 30px;
+    width: 65%;
   }
 
   .switch {
@@ -131,11 +136,14 @@
     .form-item {
       width: 100%;
       padding: 10px 0;
+      display: flex;
+      flex-direction: row;
     }
 
     input {
-      line-height: 40px;
-      font-size: 25px;
+      line-height: 30px;
+      font-size: 20px;
+      width: 35%;
     }
 
     .calculate-button {
