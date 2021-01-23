@@ -1,21 +1,25 @@
 <template>
   <div class="project">
     <h3 style="margin: 10px">{{t('DCFTitle')}}</h3>
-    <div class="switch">
+    <div class="form-item">
       <div class="switch__title">{{t('Period')}}</div>
-      <div :class="isFiveYearPeriod ? 'item' : 'item selected'" @click="switchToThreeYearView">{{t('Period3')}}</div>
-      <div :class="isFiveYearPeriod ? 'item selected' : 'item'" @click="switchToFiveYearView">{{t('Period5')}}</div>
+      <div class="switch">
+        <div :class="isFiveYearPeriod ? 'item' : 'item selected'" @click="switchToThreeYearView">{{t('Period3')}}</div>
+        <div :class="isFiveYearPeriod ? 'item selected' : 'item'" @click="switchToFiveYearView">{{t('Period5')}}</div>
+      </div>
     </div>
-    <div class="switch">
+    <div class="form-item">
       <div class="switch__title">{{t('CashFlowCalculation')}}</div>
-      <div :class="useAutoCashFlowCalulation ? 'item' : 'item selected'" @click="switchToManualInput">{{t('Manual')}}</div>
-      <div :class="useAutoCashFlowCalulation ? 'item selected' : 'item'" @click="switchToAutoCalculation">{{t('Auto')}}</div>
+      <div class="switch">
+        <div :class="useAutoCashFlowCalulation ? 'item' : 'item selected'" @click="switchToManualInput">{{t('Manual')}}</div>
+        <div :class="useAutoCashFlowCalulation ? 'item selected' : 'item'" @click="switchToAutoCalculation">{{t('Auto')}}</div>
+      </div>
     </div>
     <div
       v-if="useAutoCashFlowCalulation"
       class="dcf-container"
     >
-      <div class="form-item">
+      <div class="form-item currency">
         <div class="label">{{t('FirstYearCashflow')}}</div>
         <input type="number" v-model="firstYearCashFlow" />
       </div>
@@ -32,29 +36,29 @@
         <input type="number" v-model="growthRate" />
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
-      <div> 
-        <div>{{t('ReasonablePrice')}}</div>
+      <div class="form-item currency"> 
+        <div class="label">{{t('ReasonablePrice')}}</div>
         <div class="result">{{resonablePrice}}</div>
       </div>
     </div>
     <div v-else :class="`dcf-container${isFiveYearPeriod ? ' dcf-container__five-year-view' : ''}`">
-      <div class="form-item">
+      <div class="form-item currency">
         <div class="label">{{t('FirstYearCashflow')}}</div>
         <input type="number" v-model="firstYearCashFlow" />
       </div>
-      <div class="form-item">
+      <div class="form-item currency">
         <div class="label">{{t('SecondYearCashflow')}}</div>
         <input type="number" v-model="secondYearCashFlow" />
       </div>
-      <div class="form-item">
+      <div class="form-item currency">
         <div class="label">{{t('ThirdYearCashflow')}}</div>
         <input type="number" v-model="thirdYearCashFlow" />
       </div>
-      <div v-if="isFiveYearPeriod" class="form-item">
+      <div v-if="isFiveYearPeriod" class="form-item currency">
         <div class="label">{{t('ForthYearCashflow')}}</div>
         <input type="number" v-model="forthYearCashFlow" />
       </div>
-      <div v-if="isFiveYearPeriod" class="form-item">
+      <div v-if="isFiveYearPeriod" class="form-item currency">
         <div class="label">{{t('FifthYearCashflow')}}</div>
         <input type="number" v-model="fifthYearCashFlow" />
       </div>
@@ -67,8 +71,8 @@
         <input type="number" v-model="growthRate" />
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
-      <div> 
-        <div>{{t('ReasonablePrice')}}</div>
+      <div class="form-item currency"> 
+        <div class="label">{{t('ReasonablePrice')}}</div>
         <div class="result">{{resonablePrice}}</div>
       </div>
     </div>
@@ -86,10 +90,22 @@
     padding-top: 0px;
   }
 
+  .form-item {
+    text-align: start;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
   .result {
     color: #0f1123;
     line-height: 40px;
     font-size: 20px;
+    width: 35%;
   }
 
   .label {
@@ -97,12 +113,16 @@
     width: 65%;
   }
 
+  .form-content {
+    width: 35%;
+  }
+
   .switch {
-    padding: 10px 0;
     display: flex;
     flex-direction: row;
-    width: 100%;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 50%;
+    padding-right: 20px;
 
     .item {
       padding: 10px;
@@ -118,9 +138,10 @@
     }
 
     &__title {
-      font-size: 18px;
+      font-size: 16px;
       line-height: 40px;
-      font-weight: 600;
+      width: 50%;
+      padding-left: 20px;
     }
   }
 
@@ -128,17 +149,6 @@
     display: flex;
     padding: 0 20px;
     flex-direction: column;
-
-    @media screen and (max-width: 375px) {
-      padding: 0 10px;
-    }
-  
-    .form-item {
-      width: 100%;
-      padding: 10px 0;
-      display: flex;
-      flex-direction: row;
-    }
 
     input {
       line-height: 30px;
@@ -150,17 +160,28 @@
       background: rgba(0,0,0,0.8);
       color: white;
       font-size: 20px;
-      width: 80%;
-      margin: auto;
+      width: 100%;
       line-height: 40px;
       cursor: pointer;
       margin-top: 10px;
+      border-radius: 4px;
+    }
+
+    .currency {
+      &::after {
+        content: '¥';
+        padding-left: 10px;
+        font-size: 16px;
+        line-height: 30px;
+      }
     }
 
     .percentage-input {
       &::after {
         content: '%';
         padding-left: 5px;
+        font-size: 16px;
+        line-height: 30px;
       }
     }
   }
@@ -177,7 +198,7 @@ const en: {
   Period: 'Period',
   Period3: '3 Years',
   Period5: '5 Years',
-  CashFlowCalculation: 'CashFlow Calculation',
+  CashFlowCalculation: 'CashFlow Grow',
   Manual: 'Manual',
   Auto: 'Auto',
   FirstYearCashflow: 'First year cashflow',
@@ -288,7 +309,7 @@ export default class Project extends Vue {
       });
       res += ((cfs[length - 1] as number) / (discountRatePercent - growthRatePercent)) / Math.pow(compoundRate, length);
 
-      this.resonablePrice = res;
+      this.resonablePrice = Number(res.toFixed(2));
     } catch (e) {
       console.error(e);
     }
