@@ -21,19 +21,19 @@
     >
       <div class="form-item currency">
         <div class="label">{{t('FirstYearCashflow')}}</div>
-        <input type="number" v-model="firstYearCashFlow" pattern="[\d\.]*" />
+        <input type="number" v-model="firstYearCashFlow" inputmode="decimal" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('CashflowGrowthRate')}}</div>
-        <input type="number" v-model="cashFlowGrothRate" pattern="[\d\.]*" />
+        <input type="number" v-model="cashFlowGrothRate" inputmode="decimal" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('DiscountRate')}}</div>
-        <input type="number" v-model="discountRate" pattern="[\d\.]*" />
+        <input type="number" v-model="discountRate" inputmode="decimal" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('GrowthRate')}}</div>
-        <input type="number" v-model="growthRate" pattern="[\d\.]*" />
+        <input type="number" v-model="growthRate" inputmode="decimal" />
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
       <div class="form-item currency"> 
@@ -44,31 +44,31 @@
     <div v-else :class="`dcf-container${isFiveYearPeriod ? ' dcf-container__five-year-view' : ''}`">
       <div class="form-item currency">
         <div class="label">{{t('FirstYearCashflow')}}</div>
-        <input type="number" v-model="firstYearCashFlow" pattern="[\d\.]*" />
+        <input type="number" v-model="firstYearCashFlow" inputmode="decimal" />
       </div>
       <div class="form-item currency">
         <div class="label">{{t('SecondYearCashflow')}}</div>
-        <input type="number" v-model="secondYearCashFlow" pattern="[\d\.]*" />
+        <input type="number" v-model="secondYearCashFlow" inputmode="decimal" />
       </div>
       <div class="form-item currency">
         <div class="label">{{t('ThirdYearCashflow')}}</div>
-        <input type="number" v-model="thirdYearCashFlow" pattern="[\d\.]*" />
+        <input type="number" v-model="thirdYearCashFlow" inputmode="decimal" />
       </div>
       <div v-if="isFiveYearPeriod" class="form-item currency">
         <div class="label">{{t('ForthYearCashflow')}}</div>
-        <input type="number" v-model="forthYearCashFlow" pattern="[\d\.]*" />
+        <input type="number" v-model="forthYearCashFlow" inputmode="decimal" />
       </div>
       <div v-if="isFiveYearPeriod" class="form-item currency">
         <div class="label">{{t('FifthYearCashflow')}}</div>
-        <input type="number" v-model="fifthYearCashFlow" pattern="[\d\.]*" />
+        <input type="number" v-model="fifthYearCashFlow" inputmode="decimal" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('DiscountRate')}}</div>
-        <input type="number" v-model="discountRate" pattern="[\d\.]*" />
+        <input type="number" v-model="discountRate" inputmode="decimal" />
       </div>
       <div class="form-item percentage-input">
         <div class="label">{{t('GrowthRate')}}</div>
-        <input type="number" v-model="growthRate" pattern="[\d\.]*" />
+        <input type="number" v-model="growthRate" inputmode="decimal" />
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
       <div class="form-item currency"> 
@@ -133,7 +133,7 @@
     }
 
     .selected {
-      background: rgba(0,0,0,0.8);
+      background: #eb596e;
       color: white;
     }
 
@@ -157,7 +157,7 @@
     }
 
     .calculate-button {
-      background: rgba(0,0,0,0.8);
+      background: #eb596e;
       color: white;
       font-size: 20px;
       width: 100%;
