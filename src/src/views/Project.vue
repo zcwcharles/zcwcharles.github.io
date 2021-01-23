@@ -1,6 +1,6 @@
 <template>
   <div class="project">
-    <h3>{{t('DCFTitle')}}</h3>
+    <h3 style="margin: 10px">{{t('DCFTitle')}}</h3>
     <div class="switch">
       <div class="switch__title">{{t('Period')}}</div>
       <div :class="isFiveYearPeriod ? 'item' : 'item selected'" @click="switchToThreeYearView">{{t('Period3')}}</div>
@@ -33,7 +33,7 @@
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
       <div class="form-item"> 
-        <h3>{{t('ReasonablePrice')}}</h3>
+        <div>{{t('ReasonablePrice')}}</div>
         <div class="result">{{resonablePrice}}</div>
       </div>
     </div>
@@ -68,7 +68,7 @@
       </div>
       <div class="calculate-button" @click="calculate">{{t('Calculate')}}</div>
       <div class="form-item"> 
-        <h3>{{t('ReasonablePrice')}}</h3>
+        <div>{{t('ReasonablePrice')}}</div>
         <div class="result">{{resonablePrice}}</div>
       </div>
     </div>
@@ -93,7 +93,7 @@
   }
 
   .switch {
-    padding: 20px 0;
+    padding: 10px 0;
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -121,11 +121,8 @@
 
   .dcf-container {
     display: flex;
-    justify-content: space-between;
     padding: 0 20px;
     flex-direction: column;
-    max-height: 1000px;
-    flex: 0 0 30%;
 
     @media screen and (max-width: 375px) {
       padding: 0 10px;
@@ -133,7 +130,7 @@
   
     .form-item {
       width: 100%;
-      height: 130px;
+      padding: 10px 0;
     }
 
     input {
@@ -149,6 +146,7 @@
       margin: auto;
       line-height: 40px;
       cursor: pointer;
+      margin-top: 10px;
     }
 
     .percentage-input {
@@ -220,7 +218,7 @@ export default class Project extends Vue {
   discountRate: number = 8;
   growthRate: number = 5;
   isFiveYearPeriod: boolean = true;
-  useAutoCashFlowCalulation: boolean = false;
+  useAutoCashFlowCalulation: boolean = true;
   isChinese: boolean = navigator.language.includes('zh');
 
   switchToAutoCalculation() {
@@ -250,7 +248,7 @@ export default class Project extends Vue {
     if (!this.firstYearCashFlow) {
       return;
     }
-
+    window.scrollTo(0,document.body.scrollHeight);
     try {
       let cfs: Array<(number | string)> = [];
       if (this.useAutoCashFlowCalulation) {
